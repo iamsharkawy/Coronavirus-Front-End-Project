@@ -1,0 +1,130 @@
+
+body{
+    background-color: rgb(245, 249, 252);
+}
+
+nav{
+    z-index: 99999999;
+    background-color: #f5f9fc;
+}
+.navHeading{
+    color:rgb(59, 59, 98);
+    /* background-color: #f5f9fc; */
+}
+#homeSection{
+    background-image: url(images/shape-a.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 150px;
+}
+.headerImg{
+    height: 90%;
+}
+.textColor{
+    font-weight: bold;
+    font-size: 90px;
+    color:#336699;
+} 
+.text{
+    font-weight: bold;
+    font-size: 32px; 
+    color:#336699;
+}
+.covidText{
+    font-weight: bold;
+    font-size: 22px; 
+    color: red;
+}
+.sectionTitle{
+    letter-spacing: 2px;
+}
+.headingText{
+    color:#336699;
+}
+#treatment{
+    background-image: url(images/shape-a.png);
+    background-size: cover;
+    background-color: #385898;
+} 
+.selfCare{
+    background-color: #12477d;
+}
+
+.sympCardImg{
+width:70px;
+height:70px;
+position: absolute;
+top:-40px;
+right:20px;
+}
+.doAndDonotImg{
+width: 80px;
+height:80px;
+}
+
+.trueAndFalseIcon{
+position: absolute;
+top:-3px;
+left:30px
+}
+
+
+
+
+.navAnchorColor{
+    color:rgb(43, 43, 245);
+    transition: 0.1s;
+}
+
+
+.scrollUpDiv{
+    width:50px;
+    height:50px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: -50px;
+    transition: 0.5s;
+}
+.scrollUpDiv.show{
+    right:20px;
+    }
+
+.questionsBtn{
+    border: 2px solid gainsboro;
+}
+.questionsBtn:hover{
+    border: 2px solid blue;
+    background-color: white;
+    color:blue;
+}
+
+
+.d-none{
+    display: none;
+}
+
+
+
+
+footer{
+    padding:90px 0px;
+    background-color:rgb(19, 19, 45);
+    background-image: url(images/shape-a.png);
+}
+.faceBook{
+    padding: 12px 48px;
+    background-color:#385898;
+}
+.twitter{
+    padding: 12px 48px;
+    background-color: rgb(29, 155, 240);;
+}
+.instgram{
+    padding: 12px 48px;
+   
+}
+.num19Color{
+    color:#336699;
+}
+
