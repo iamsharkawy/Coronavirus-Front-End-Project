@@ -1,130 +1,604 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+    /* Colors */
+    --primary-color: #0F172A;
+    /* Deep Navy */
+    --accent-color: #3B82F6;
+    /* Bright Blue */
+    --accent-hover: #2563EB;
+    --secondary-color: #64748B;
+    /* Slate Gray */
+    --highlight-color: #F43F5E;
+    /* Vibrant Coral/Red for virus */
+    --success-color: #10B981;
+    --warning-color: #F59E0B;
+    --light-bg: #F8FAFC;
+    --white: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.3);
 
-body{
-    background-color: rgb(245, 249, 252);
+    /* Typography */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-glow: 0 0 15px rgba(59, 130, 246, 0.5);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
 }
 
-nav{
-    z-index: 99999999;
-    background-color: #f5f9fc;
+html {
+    scroll-behavior: smooth;
 }
-.navHeading{
-    color:rgb(59, 59, 98);
-    /* background-color: #f5f9fc; */
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--light-bg);
+    color: var(--primary-color);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
-#homeSection{
-    background-image: url(images/shape-a.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-top: 150px;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--primary-color);
 }
-.headerImg{
-    height: 90%;
+
+p {
+    color: var(--secondary-color);
 }
-.textColor{
-    font-weight: bold;
-    font-size: 90px;
-    color:#336699;
-} 
-.text{
-    font-weight: bold;
-    font-size: 32px; 
-    color:#336699;
+
+a {
+    text-decoration: none !important;
+    transition: var(--transition-fast);
 }
-.covidText{
-    font-weight: bold;
-    font-size: 22px; 
-    color: red;
+
+section {
+    position: relative;
+    overflow: hidden;
 }
-.sectionTitle{
+
+/* =========================================
+   2. UTILITIES & COMPONENTS
+   ========================================= */
+.sectionTitle {
+    font-size: 0.9rem;
+    font-weight: 600;
     letter-spacing: 2px;
-}
-.headingText{
-    color:#336699;
-}
-#treatment{
-    background-image: url(images/shape-a.png);
-    background-size: cover;
-    background-color: #385898;
-} 
-.selfCare{
-    background-color: #12477d;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    display: block;
 }
 
-.sympCardImg{
-width:70px;
-height:70px;
-position: absolute;
-top:-40px;
-right:20px;
-}
-.doAndDonotImg{
-width: 80px;
-height:80px;
+.headingText {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
 }
 
-.trueAndFalseIcon{
-position: absolute;
-top:-3px;
-left:30px
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
 }
 
-
-
-
-.navAnchorColor{
-    color:rgb(43, 43, 245);
-    transition: 0.1s;
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+    background: linear-gradient(135deg, var(--accent-hover) 0%, var(--accent-color) 100%);
 }
 
-
-.scrollUpDiv{
-    width:50px;
-    height:50px;
-    cursor: pointer;
-    position: fixed;
-    bottom: 20px;
-    right: -50px;
-    transition: 0.5s;
-}
-.scrollUpDiv.show{
-    right:20px;
-    }
-
-.questionsBtn{
-    border: 2px solid gainsboro;
-}
-.questionsBtn:hover{
-    border: 2px solid blue;
-    background-color: white;
-    color:blue;
+.card {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+    overflow: hidden;
 }
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
 
-.d-none{
+/* =========================================
+   3. NAVBAR
+   ========================================= */
+nav.navbar {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 0;
+    transition: var(--transition-normal);
+}
+
+.navHeading {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    letter-spacing: -1px;
+}
+
+.navHeading .fa-virus {
+    color: var(--highlight-color);
+    animation: pulse 2s infinite;
+}
+
+.navHeading .num19Color {
+    color: var(--accent-color);
+}
+
+.nav-link {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--secondary-color) !important;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem !important;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent-color) !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--accent-color);
+    transition: var(--transition-fast);
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+.nav-link.btn {
+    color: var(--white) !important;
+}
+
+.nav-link.btn::after {
     display: none;
 }
 
-
-
-
-footer{
-    padding:90px 0px;
-    background-color:rgb(19, 19, 45);
-    background-image: url(images/shape-a.png);
-}
-.faceBook{
-    padding: 12px 48px;
-    background-color:#385898;
-}
-.twitter{
-    padding: 12px 48px;
-    background-color: rgb(29, 155, 240);;
-}
-.instgram{
-    padding: 12px 48px;
-   
-}
-.num19Color{
-    color:#336699;
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+#homeSection {
+    padding-top: 180px;
+    padding-bottom: 100px;
+    background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 40%),
+        radial-gradient(circle at bottom left, rgba(244, 63, 94, 0.05), transparent 40%);
 }
 
+.textColor {
+    font-size: 100px;
+    font-weight: 900;
+    color: rgba(15, 23, 42, 0.05);
+    position: absolute;
+    top: -40px;
+    left: 0;
+    z-index: -1;
+    line-height: 1;
+}
+
+.covidText {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--highlight-color);
+    line-height: 1.1;
+    margin-bottom: 0;
+}
+
+.text {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1.1;
+}
+
+#homeSection .text-muted {
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin-top: 1.5rem;
+}
+
+#homeSection h3 {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 0.2rem;
+}
+
+#homeSection .text-uppercase {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.headerImg {
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+}
+
+/* =========================================
+   5. ABOUT & TRANSMISSION
+   ========================================= */
+#aboutTheDisease,
+#transmission {
+    background-color: var(--white);
+}
+
+.list-group {
+    border-radius: 20px;
+    overflow: hidden;
+    border: none;
+    box-shadow: var(--shadow-lg);
+}
+
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 1.2rem 1.5rem;
+    transition: var(--transition-fast);
+}
+
+.list-group-item:hover {
+    background-color: #f8fafc;
+    padding-left: 1.8rem;
+}
+
+.list-group-item a {
+    color: var(--primary-color);
+    font-weight: 500;
+    display: block;
+}
+
+.list-group-item a:hover {
+    color: var(--accent-color);
+}
+
+/* =========================================
+   6. SYMPTOMS
+   ========================================= */
+#symptomsOfCorona {
+    background-color: var(--light-bg);
+}
+
+.sympCardImg {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 4px solid var(--white);
+    box-shadow: var(--shadow-md);
+    position: absolute;
+    top: -50px;
+    right: 20px;
+    transition: var(--transition-normal);
+}
+
+.card:hover .sympCardImg {
+    transform: scale(1.1) rotate(5deg);
+}
+
+#symptomsOfCorona .card {
+    margin-top: 50px;
+    padding-top: 40px;
+    border: none;
+}
+
+#symptomsOfCorona .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* =========================================
+   7. PREVENTION & STEPS
+   ========================================= */
+#prevention .card-img-top {
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 1.5rem;
+    transition: var(--transition-normal);
+}
+
+#prevention .col-lg-3:hover .card-img-top {
+    transform: rotateY(180deg);
+}
+
+#steps {
+    background-color: var(--white);
+}
+
+#steps .row.shadow {
+    border-radius: 30px;
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+#steps .fa-circle-check {
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
+
+/* =========================================
+   8. TREATMENT & DO'S/DON'TS
+   ========================================= */
+#treatment {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #1e293b 100%);
+    color: var(--white);
+    position: relative;
+}
+
+#treatment::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/shape-a.png');
+    background-size: cover;
+    opacity: 0.1;
+}
+
+.selfCare {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+
+#doAnddonot .doAndDonotImg {
+    width: 100px;
+    height: 100px;
+    border-width: 4px !important;
+    padding: 5px;
+    background: var(--white);
+}
+
+.trueAndFalseIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: auto;
+    background: var(--white);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+}
+
+/* =========================================
+   9. FAQ
+   ========================================= */
+.questionsBtn {
+    background: var(--white);
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-weight: 600;
+    color: var(--primary-color);
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+}
+
+.questionsBtn:hover,
+.questionsBtn:focus {
+    background: var(--accent-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+.accordion-item {
+    border: none;
+    margin-bottom: 1rem;
+    border-radius: 10px !important;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.accordion-button {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #eff6ff;
+    color: var(--accent-color);
+    box-shadow: none;
+}
+
+/* =========================================
+   10. FOOTER
+   ========================================= */
+footer {
+    background-color: var(--primary-color);
+    color: #94a3b8;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    font-size: 0.9rem;
+}
+
+footer h3 {
+    color: var(--white);
+    font-size: 2rem;
+}
+
+footer h4 {
+    color: var(--white);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+footer a {
+    color: #94a3b8 !important;
+    transition: var(--transition-fast);
+}
+
+footer a:hover {
+    color: var(--accent-color) !important;
+    padding-left: 5px;
+}
+
+.faceBook,
+.twitter,
+.instgram {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 0;
+    color: var(--white) !important;
+    margin-right: 10px;
+}
+
+.faceBook {
+    background-color: #3b5998;
+}
+
+.twitter {
+    background-color: #1da1f2;
+}
+
+.instgram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.faceBook:hover,
+.twitter:hover,
+.instgram:hover {
+    transform: translateY(-3px);
+    padding-left: 0;
+}
+
+.scrollUpDiv {
+    width: 50px;
+    height: 50px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-normal);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.scrollUpDiv.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scrollUpDiv:hover {
+    background: var(--accent-hover);
+    transform: translateY(-5px);
+}
+
+.scrollUpDiv i {
+    color: var(--white);
+}
+
+/* =========================================
+   11. ANIMATIONS
+   ========================================= */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* =========================================
+   12. RESPONSIVE
+   ========================================= */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: var(--white);
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: var(--shadow-lg);
+        margin-top: 1rem;
+    }
+
+    .headerImg {
+        margin-top: 3rem;
+    }
+
+    .textColor {
+        font-size: 60px;
+        top: -20px;
+    }
+
+    .covidText,
+    .text {
+        font-size: 3rem;
+    }
+}
